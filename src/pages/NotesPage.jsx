@@ -1,6 +1,10 @@
 // src/pages/NotesPage.jsx
 import React, { useEffect, useMemo, useState } from "react";
+<<<<<<< HEAD
 import { useNavigate, useOutletContext } from "react-router-dom";
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -20,6 +24,10 @@ import {
   faArrowLeft,
   faEllipsisV,
   faChevronDown,
+<<<<<<< HEAD
+=======
+  faPaperPlane,
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 } from "@fortawesome/free-solid-svg-icons";
 import {
   fetchNotes,
@@ -31,6 +39,10 @@ import "../index.css";
 
 // --- STATIC DATA ---
 const folderOptions = [
+<<<<<<< HEAD
+=======
+  { key: "Inbox", label: "Inbox" },
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
   { key: "School", label: "School" },
   { key: "Work", label: "Work" },
   { key: "Personal", label: "Personal" },
@@ -38,6 +50,7 @@ const folderOptions = [
 ];
 
 const quickCreateOptions = [
+<<<<<<< HEAD
   { key: "note", label: "Note" },
   { key: "calendar", label: "Calendar" },
   { key: "tasks", label: "Tasks" },
@@ -46,6 +59,15 @@ const quickCreateOptions = [
 
 const fallbackFolderKey = "School";
 
+=======
+  { key: "message", label: "Message" },
+  { key: "note", label: "Note" },
+  { key: "calendar", label: "Calendar" },
+  { key: "project", label: "Project" },
+  { key: "all", label: "All notes" },
+];
+
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 const defaultFormatting = {
   fontSize: "16px",
   fontFamily: "'Inter', system-ui, sans-serif",
@@ -76,6 +98,7 @@ const headingOptions = [
 // FINAL VERSION + USER PROP
 export default function NotesPage({ user }) {
   const navigate = useNavigate();
+<<<<<<< HEAD
   const outletContext = useOutletContext();
   const [localFolder, setLocalFolder] = useState("All");
   const activeFolder = outletContext?.activeFolder ?? localFolder;
@@ -84,13 +107,24 @@ export default function NotesPage({ user }) {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState("");
+=======
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState("");
+  // now matches version 1 layout (All + select) but still works with your filter logic
+  const [activeFolder, setActiveFolder] = useState("All");
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 
   const [mainSearch, setMainSearch] = useState("");
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [draft, setDraft] = useState({
     title: "",
     content: "",
+<<<<<<< HEAD
     folder: "School",
+=======
+    folder: "Inbox",
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
   });
   const [formatting, setFormatting] = useState(defaultFormatting);
   const [saving, setSaving] = useState(false);
@@ -128,18 +162,26 @@ export default function NotesPage({ user }) {
     setDraft({
       title: note.title || "Untitled note",
       content: note.content || "",
+<<<<<<< HEAD
       folder: note.folder || fallbackFolderKey,
+=======
+      folder: note.folder || "Inbox",
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
     });
     setFormatting({ ...defaultFormatting, ...(note.formatting || {}) });
   };
 
   const closeEditor = () => {
     setSelectedNoteId(null);
+<<<<<<< HEAD
     setDraft({
       title: "",
       content: "",
       folder: activeFolder === "All" ? fallbackFolderKey : activeFolder,
     });
+=======
+    setDraft({ title: "", content: "", folder: activeFolder });
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
     setFormatting(defaultFormatting);
   };
 
@@ -147,6 +189,7 @@ export default function NotesPage({ user }) {
   // but still uses your final-version Firestore + user logic.
   const handleCreate = async (typeLabel = "Note", typeKey = "note") => {
     if (typeKey === "calendar") {
+<<<<<<< HEAD
       setCreateMenuOpen(false);
       navigate("/calendar");
       return;
@@ -161,13 +204,23 @@ export default function NotesPage({ user }) {
       navigate("/tasks");
       return;
     }
+=======
+      navigate("/calendar");
+      return;
+    }
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 
     if (!user || !user.uid) {
       setStatus("Error: Must be signed in to create a document.");
       return;
     }
 
+<<<<<<< HEAD
     const folder = activeFolder === "All" ? fallbackFolderKey : activeFolder;
+=======
+    const fallbackFolder = "Inbox";
+    const folder = activeFolder === "All" ? fallbackFolder : activeFolder;
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 
     const payload = {
       title: typeLabel === "Note" ? "New doc" : typeLabel,
@@ -234,7 +287,11 @@ export default function NotesPage({ user }) {
     const query = mainSearch.toLowerCase().trim();
     return notes.filter((note) => {
       const folderMatch =
+<<<<<<< HEAD
         activeFolder === "All" || (note.folder || fallbackFolderKey) === activeFolder;
+=======
+        activeFolder === "All" || (note.folder || "Inbox") === activeFolder;
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
       const text = `${note.title || ""} ${note.content || ""}`.toLowerCase();
       const searchMatch = !query || text.includes(query);
       return folderMatch && searchMatch;
@@ -393,6 +450,13 @@ export default function NotesPage({ user }) {
             </select>
           </div>
 
+<<<<<<< HEAD
+=======
+          <button className="new-message" onClick={() => handleCreate("Message", "message")}>
+            <FontAwesomeIcon icon={faPaperPlane} /> New message
+          </button>
+
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
           <div className="new-doc-dropdown">
             <button
               className="new-doc"

@@ -1,8 +1,16 @@
 // src/components/Sidebar.jsx
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+=======
+import React from "react";
+import { Link, useLocation } from "react-router-dom"; 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInbox,
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
   faUniversity,
   faBriefcase,
   faUser,
@@ -17,6 +25,7 @@ import { auth } from "../firebase";
 
 // --- STATIC DATA ---
 const folderOptions = [
+<<<<<<< HEAD
   { key: "School", label: "School", icon: faUniversity },
   { key: "Work", label: "Work", icon: faBriefcase },
   { key: "Personal", label: "Personal", icon: faUser },
@@ -24,6 +33,16 @@ const folderOptions = [
 ];
 
 const mainNavLinks = [
+=======
+  { key: "Inbox", label: "Inbox", icon: faInbox },
+  { key: "School", label: "School", icon: faUniversity },
+  { key: "Work", label: "Work", icon: faBriefcase },
+  { key: "Personal", label: "Personal", icon: faUser },
+];
+
+const mainNavLinks = [
+  { path: "/notes", label: "Notes", icon: faFolder },
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
   { path: "/tasks", label: "Tasks", icon: faBriefcase },
   { path: "/calendar", label: "Calendar", icon: faCalendar },
   { path: "/projects", label: "Projects", icon: faFolder },
@@ -37,7 +56,10 @@ export default function Sidebar({
   setIsDropdownOpen,
 }) {
   const location = useLocation(); 
+<<<<<<< HEAD
   const [notesOpen, setNotesOpen] = useState(true);
+=======
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
   
   const profileEmail = user?.email || "test@example.com"; 
   const profileName = user?.displayName || "Drew Miguel";
@@ -54,6 +76,7 @@ export default function Sidebar({
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* --- Notes dropdown with folders --- */}
       <div className="sidebar-section">
         <button
@@ -85,6 +108,31 @@ export default function Sidebar({
             ))}
           </div>
         )}
+=======
+      {/* --- Folder chips (no more "Notes" pill above Inbox) --- */}
+      <div className="sidebar-section">
+        <div className="folder-list">
+          {folderOptions.map((folder) => (
+            <button
+              key={folder.key}
+              className={`folder-chip ${
+                activeFolder === folder.key ? "active" : ""
+              }`}
+              onClick={() => setActiveFolder(folder.key)}
+            >
+              <FontAwesomeIcon icon={folder.icon} />
+              <span>{folder.label}</span>
+            </button>
+          ))}
+          <button
+            className={`folder-chip ${activeFolder === "All" ? "active" : ""}`}
+            onClick={() => setActiveFolder("All")}
+          >
+            <FontAwesomeIcon icon={faInbox} />
+            <span>All</span>
+          </button>
+        </div>
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
       </div>
 
       {/* --- Main App Navigation Links AS DROPDOWN --- */}

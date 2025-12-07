@@ -5,7 +5,11 @@ import Sidebar from './Sidebar';
 
 export default function MainLayout({ user }) {
   // State for Sidebar interactions 
+<<<<<<< HEAD
   const [activeFolder, setActiveFolder] = useState("All");
+=======
+  const [activeFolder, setActiveFolder] = useState("Inbox");
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
 
   return (
@@ -23,8 +27,16 @@ export default function MainLayout({ user }) {
 
       {/* Main Content Area (Outlet renders the child page) */}
       <main className="notes-main">
+<<<<<<< HEAD
         <Outlet context={{ activeFolder, setActiveFolder }} /> 
       </main>
     </div>
   );
 }
+=======
+        <Outlet /> 
+      </main>
+    </div>
+  );
+}
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9

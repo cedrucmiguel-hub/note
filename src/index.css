@@ -554,11 +554,19 @@ html {
   padding: 14px 18px;
   border: none;
   border-radius: 14px;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #2f7d6d, #1f6d5a);
   color: #fff;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 14px 26px rgba(31, 109, 90, 0.24);
+=======
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 16px 30px rgba(22, 163, 74, 0.28);
+>>>>>>> 2ac488eae728eb3bf4fed2158099af60560d2ab9
 }
 
 .cta-new-wide .pill {
